@@ -1,0 +1,12 @@
+﻿.counter {
+    min-height: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 4rem;
+    box-shadow: 0 0 50px 4px #fff, /* inner white */
+                0 0 60px 5px #f0f, /* middle magenta */
+                0 0 83px 6px #0ff;
+}
