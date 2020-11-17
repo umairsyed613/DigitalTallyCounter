@@ -29,3 +29,7 @@
 .list-group-item:hover .list-arrow {
     opacity: 1;
 }
+
+.tally-items-manage-row {
+    padding: .75rem 1.25rem;
+}
