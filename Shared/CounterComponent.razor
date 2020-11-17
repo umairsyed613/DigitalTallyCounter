@@ -1,0 +1,45 @@
+﻿@inject IJSRuntime JSRuntime
+
+<div class="d-flex flex-column align-content-center justify-content-center animate__animated animate__zoomIn">
+
+    <div class="d-flex flex-row align-items-center justify-content-center user-select-none">
+        <span class="text-center">
+            Counter Title
+        </span>
+    </div>
+
+    <div id="counterbtn" class="rounded-circle bg-light counter mx-auto disable-dbl-tap-zoom" @onclick="IncrementCount">
+        <span class="tally text-center user-select-none">@Count</span>
+    </div>
+
+    <div class="mt-5 p-3 d-flex flex-row justify-content-center align-items-center">
+        <button type="button" class="btn btn-outline-warning btn-circle mr-3" data-toggle="tooltip" data-placement="top" title="Reset Count" @onclick="ResetCounter">
+            <i class="fa fa-times"></i>
+        </button>
+        
+        <button type="button" class="btn btn-outline-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Settings" @onclick="ResetCounter">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </button>
+    </div>
+
+</div>
+
+@code{
+    private int Count = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("VibrateOnTouch");
+    }
+
+    private void IncrementCount()
+    {
+        Count++;
+    }
+
+    private void ResetCounter()
+    {
+        Count = 0;
+    }
+
+}

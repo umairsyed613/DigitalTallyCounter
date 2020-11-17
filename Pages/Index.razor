@@ -1,37 +1,4 @@
 ﻿@page "/"
+@page "/home"
 
-<div class="d-flex flex-column align-content-center justify-content-center animate__animated animate__zoomIn">
-
-    <div class="d-flex flex-row align-items-center justify-content-center user-select-none">
-        <span class="text-center">
-            Counter Title
-        </span>
-    </div>
-
-    <div class="rounded-circle bg-light counter mx-auto" @onclick="IncrementCount">
-        <span class="tally text-center user-select-none">@Count</span>
-    </div>
-
-    <div class="mt-5 p-3 d-flex flex-row justify-content-center align-items-center">
-        <button type="button" class="btn btn-outline-warning btn-circle" data-toggle="tooltip" data-placement="top" title="Reset Count" @onclick="ResetCounter">
-            <i class="fa fa-times"></i>
-        </button>
-    </div>
-
-</div>
-
-@code{
-    private int Count = 0;
-
-    private void IncrementCount()
-    {
-        Count++;
-    }
-
-    private void ResetCounter()
-    {
-        Count = 0;
-
-    }
-
-}
+<TallyCounterList />

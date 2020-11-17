@@ -1,0 +1,35 @@
+﻿.counter {
+    min-height: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 5rem;
+    box-shadow: 0 0 50px 4px #fff, /* inner white */
+                0 0 60px 5px #f0f, /* middle magenta */
+                0 0 83px 6px #0ff;
+}
+
+/*.counter:active {
+        animation: heartBeat;*/ /* referring directly to the animation's @keyframe declaration */
+/*animation-duration: 1s;*/ /* don't forget to set a duration! */
+/*}*/
+
+.tally {
+    font-size: 4rem;
+    font-weight: bold;
+    background: -webkit-linear-gradient(rgba(32,38,57,1), rgba(63,76,119,1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.counter:active, .tally:active {
+    animation: heartBeat; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s; /* don't forget to set a duration! */
+}
+
+.btn-outline-warning {
+    color: #6d6d6d !important;
+    border-color: #6d6d6d !important;
+}
