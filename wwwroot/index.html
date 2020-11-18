@@ -16,7 +16,17 @@
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+        <h4 class="text-center text-capitalize user-select-none loading-txt animate-flicker">Loading Application</h4>
+        <div class="d-flex flex-row w-100 align-items-center justify-content-center loading-container user-select-none">
+            <img src="images/tally-counter.png" height="250" width="250" />
+            <div class="numbers">
+                <span class="box third-number"></span>
+                <span class="box second-number"></span>
+                <span class="box first-number"></span>
+            </div>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -27,7 +37,7 @@
     <script>navigator.serviceWorker.register('service-worker.js');</script>
     <script type="text/javascript" src="js/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.vibrate.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
 </body>

@@ -33,3 +33,9 @@
 .tally-items-manage-row {
     padding: .75rem 1.25rem;
 }
+
+.btnAdd {
+    position: fixed;
+    bottom: 21px;
+    right: 25px;
+}

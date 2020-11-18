@@ -1,5 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
 
 * {
     margin: 0;
@@ -15,9 +15,9 @@ html, body {
     min-height: 100vh;
 }
 
-.container {
+/*.container {
     min-height: 100vh;
-}
+}*/
 
 .invalid {
     outline: 1px solid red;
@@ -77,4 +77,138 @@ html, body {
 
 .disable-dbl-tap-zoom {
     touch-action: manipulation;
+}
+
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+    .ripple:hover {
+        background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+    }
+
+    .ripple:active {
+        background-color: #6eb9f7;
+        background-size: 100%;
+        transition: background 0s;
+    }
+
+.loading-txt {
+    font-family: 'Goldman', cursive;
+    position: absolute;
+    top: 30%;
+    left: 23%;
+}
+
+.loading-container {
+    min-height: 100vh;
+}
+
+    .loading-container .numbers {
+        position: absolute;
+        top: 49%;
+        left: 38%;
+    }
+
+.box {
+    display: inline-block;
+    height: 1em;
+    line-height: 1em;
+    font-weight: bold;
+    font-size: 1.6em;
+    overflow: hidden;
+    margin-right: 0.7rem;
+}
+
+    .box:after {
+        position: relative;
+        white-space: pre;
+        content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
+    }
+
+    .box.first-number:after {
+        animation: animate 1s steps(10) infinite;
+    }
+
+    .box.second-number:after {
+        animation: animate 10s steps(10) infinite;
+    }
+
+    .box.third-number:after {
+        animation: animate 100s steps(10) infinite;
+    }
+
+@keyframes animate {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: -9.8em;
+    }
+}
+
+@keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.animate-flicker {
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
 }
