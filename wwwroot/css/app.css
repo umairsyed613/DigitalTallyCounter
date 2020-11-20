@@ -97,57 +97,12 @@ html, body {
 
 .loading-txt {
     font-family: 'Goldman', cursive;
-    position: absolute;
-    top: 30%;
-    left: 23%;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
 }
 
 .loading-container {
     min-height: 100vh;
-}
-
-    .loading-container .numbers {
-        position: absolute;
-        top: 49%;
-        left: 38%;
-    }
-
-.box {
-    display: inline-block;
-    height: 1em;
-    line-height: 1em;
-    font-weight: bold;
-    font-size: 1.6em;
-    overflow: hidden;
-    margin-right: 0.7rem;
-}
-
-    .box:after {
-        position: relative;
-        white-space: pre;
-        content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
-    }
-
-    .box.first-number:after {
-        animation: animate 1s steps(10) infinite;
-    }
-
-    .box.second-number:after {
-        animation: animate 10s steps(10) infinite;
-    }
-
-    .box.third-number:after {
-        animation: animate 100s steps(10) infinite;
-    }
-
-@keyframes animate {
-    0% {
-        top: 0;
-    }
-
-    100% {
-        top: -9.8em;
-    }
 }
 
 @keyframes flickerAnimation {
@@ -155,50 +110,16 @@ html, body {
         opacity: 1;
     }
 
-    50% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@-o-keyframes flickerAnimation {
-    0% {
-        opacity: 1;
+    30% {
+        opacity: 0.5;
     }
 
     50% {
         opacity: 0;
     }
 
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes flickerAnimation {
-    0% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes flickerAnimation {
-    0% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
+    75% {
+        opacity: 0.5;
     }
 
     100% {
@@ -207,8 +128,5 @@ html, body {
 }
 
 .animate-flicker {
-    -webkit-animation: flickerAnimation 1s infinite;
-    -moz-animation: flickerAnimation 1s infinite;
-    -o-animation: flickerAnimation 1s infinite;
-    animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 2s ease-in-out infinite;
 }

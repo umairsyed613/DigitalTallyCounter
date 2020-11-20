@@ -1,0 +1,8 @@
+﻿
+.settings {
+    margin-top: 0rem;
+}
+
+@media (max-width: 575.98px) {
+    .settings { margin-top: 3rem; }
+}

@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager;
 
 <div class="d-flex flex-column align-content-center justify-content-center animate__animated animate__zoomIn">
 
@@ -11,23 +12,38 @@
     <div id="counterbtn" class="rounded-circle bg-light counter mx-auto disable-dbl-tap-zoom" @onclick="IncrementCount">
         <span class="tally text-center user-select-none">@Count</span>
     </div>
-
-    <div class="mt-5 p-3 d-flex flex-row justify-content-center align-items-center animate__animated animate__shakeX animate__delay-1s">
-        <button type="button" class="btn btn-outline-warning btn-circle btn-lg shadow mr-3" data-toggle="tooltip" data-placement="top" title="Reset Count" @onclick="ResetCounter">
-            <i class="fas fa-undo"></i>
-        </button>
-        
-        <button type="button" class="btn btn-outline-primary btn-circle btn-lg shadow" data-toggle="tooltip" data-placement="top" title="Settings" @onclick="ShowSettings">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-        </button>
-    </div>
     
+    <div class="desktopNavBarContainer">
+        <div class="mt-5 p-3 d-flex flex-row justify-content-center align-items-center animate__animated animate__flash animate__delay-1s">
+            <button type="button" class="btn btn-outline-warning btn-circle btn-lg shadow mr-3" data-toggle="tooltip" data-placement="top" title="Reset Count" @onclick="ResetCounter">
+                <i class="fas fa-undo"></i>
+            </button>
+        
+            <button type="button" class="btn btn-outline-primary btn-circle btn-lg shadow" data-toggle="tooltip" data-placement="top" title="Settings" @onclick="ShowSettings">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
     @if (showSettings)
     {
         <CounterSettings></CounterSettings>
     }
 
 </div>
+
+<div class="mobileNavBarContainer fixed-bottom">
+    <div class="mobileNavBar d-flex flex-row align-items-center justify-content-between w-100">
+        <button class="btn btn-default" @onclick="@(() => NavigationManager.NavigateTo("./home"))"><i class="fas fa-chevron-left"></i></button>
+        <button class="btn btn-default" @onclick="ResetCounter"><i class="fas fa-undo" ></i></button>
+        <button class="btn btn-default" @onclick="ShowSettings"><i class="fas fa-cog"></i></button>
+    </div>
+
+    @* <nav class="navbar navbar-dark fixed-bottom bg-dark">
+           
+        </nav>*@
+</div>
+
 
 @code{
     private int Count = 0;

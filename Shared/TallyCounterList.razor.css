@@ -39,3 +39,12 @@
     bottom: 21px;
     right: 25px;
 }
+
+@media (min-width: 992px){
+    .btnAdd {
+        top: 75px;
+    }
+    .tally-items {
+        margin-top: 3rem;
+    }
+}

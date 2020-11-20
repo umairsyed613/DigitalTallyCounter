@@ -7,8 +7,8 @@
     cursor: pointer;
     margin-top: 5rem;
     box-shadow: 0 0 50px 4px #fff, /* inner white */
-                0 0 60px 5px #f0f, /* middle magenta */
-                0 0 83px 6px #0ff;
+    0 0 60px 5px #f0f, /* middle magenta */
+    0 0 83px 6px #0ff;
 }
 
 /*.counter:active {
@@ -24,12 +24,57 @@
     -webkit-text-fill-color: transparent;
 }
 
-.counter:active, .tally:active {
-    animation: heartBeat;
-    animation-duration: 2s;
-}
+    .counter:active, .tally:active {
+        animation: heartBeat;
+        animation-duration: 2s;
+    }
 
 .btn-outline-warning {
     color: #6d6d6d !important;
     border-color: #6d6d6d !important;
+}
+
+.mobileNavBarContainer {
+    visibility: hidden;
+}
+
+.desktopNavBarContainer {
+    display: unset;
+}
+
+@media (max-width: 575.98px) {
+    .counter {
+        min-height: 280px;
+        min-width: 280px;
+    }
+
+    .desktopNavBarContainer {
+        display: none;
+    }
+
+    .mobileNavBarContainer {
+        visibility: visible;
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+        z-index: 1;
+        background: inherit;
+        overflow: hidden;
+    }
+
+    .mobileNavBarContainer:before {
+            content: "";
+            position: absolute;
+            background: inherit;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+            filter: blur(10px);
+            margin: -20px;
+        }
+
+    .mobileNavBar {
+        padding: .5rem 1rem;
+    }
 }
