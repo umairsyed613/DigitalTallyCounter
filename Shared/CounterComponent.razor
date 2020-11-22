@@ -34,9 +34,9 @@
 
 <div class="mobileNavBarContainer fixed-bottom">
     <div class="mobileNavBar d-flex flex-row align-items-center justify-content-between w-100">
-        <button class="btn btn-default" @onclick="@(() => NavigationManager.NavigateTo("./home"))"><i class="fas fa-chevron-left"></i></button>
-        <button class="btn btn-default" @onclick="ResetCounter"><i class="fas fa-undo" ></i></button>
-        <button class="btn btn-default" @onclick="ShowSettings"><i class="fas fa-cog"></i></button>
+        <div class="mobileNavbarBtn" @onclick="@(() => NavigationManager.NavigateTo("./home"))"><i class="fas fa-home"></i></div>
+        <div class="mobileNavbarBtn" @onclick="ResetCounter"><i class="fas fa-undo" ></i></div>
+        <div class="mobileNavbarBtn" @onclick="ShowSettings"><i class="fas fa-cog"></i></div>
     </div>
 
     @* <nav class="navbar navbar-dark fixed-bottom bg-dark">

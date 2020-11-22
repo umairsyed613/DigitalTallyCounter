@@ -19,3 +19,8 @@
     filter: blur(10px);
     margin: -20px;
 }
+
+.navBrandIcon {
+    animation: flipInX;
+    animation-duration: 1s;
+}
