@@ -24,3 +24,23 @@
     animation: flipInX;
     animation-duration: 1s;
 }
+.slide-left {
+    animation: slide-left 1s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+@keyframes slide-left {
+    0% {
+        -webkit-transform: translateX(-200px);
+        transform: translateX(-200px)
+    }
+
+    50% {
+        -webkit-transform: translateX(30px);
+        transform: translateX(30px)
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0)
+    }
+}
