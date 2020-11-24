@@ -1,0 +1,46 @@
+﻿@page "/addtallycounteritem"
+@inject ITallyCounterService TallyCounterService
+@inject NavigationManager NavigationManager
+
+<div class="d-flex flex-column w-100 align-items-center justify-content-center animate__animated animate__slideInRight">
+
+    <h4 class="user-select-none">Add New Tally Counter</h4>
+    <hr/>
+    <EditForm EditContext="@editContext" OnSubmit="@HandleSubmit" class="w-100">
+
+        <div class="form-group">
+            <label for="name">Tally Counter Name</label>
+            <InputText id="name" @bind-Value="_tallyCounter.Name" class="form-control" aria-describedby="nameHelp" />
+            <small id="nameHelp" class="form-text text-muted">Enter name of the tally counter.</small>
+        </div>
+        
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <button type="submit" class="btn btn-primary ripple">Submit</button>
+    </EditForm>
+
+</div>
+
+@code
+{
+    private TallyCounterItem _tallyCounter = new TallyCounterItem { CreatedAt = DateTime.Now };
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(_tallyCounter);
+    }
+
+    private async Task HandleSubmit()
+    {
+        var isValid = editContext.Validate();
+
+        if (isValid)
+        {
+            await TallyCounterService.Upsert(_tallyCounter);
+            _tallyCounter = new TallyCounterItem { CreatedAt = DateTime.Now };
+            NavigationManager.NavigateTo("/home");
+        }
+    }
+}

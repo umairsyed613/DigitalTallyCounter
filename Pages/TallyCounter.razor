@@ -1,6 +1,17 @@
-﻿@page "/tally-counter"
-<CounterComponent></CounterComponent>
+﻿@page "/tally-counter/{Id}"
+@inject ITallyCounterService TallyCounterService;
+
+<CounterComponent CounterItem="_tallyCounterItem"></CounterComponent>
 
 @code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private TallyCounterItem _tallyCounterItem;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _tallyCounterItem = await TallyCounterService.GetTallyCounterItem(Id);
+    }
 
 }

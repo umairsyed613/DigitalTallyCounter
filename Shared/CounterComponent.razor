@@ -1,11 +1,12 @@
 ﻿@inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager;
+@inject NavigationManager NavigationManager
+@inject ITallyCounterService TallyCounterService
 
 <div class="d-flex flex-column align-content-center justify-content-center animate__animated animate__zoomIn">
 
     <div class="d-flex flex-row align-items-center justify-content-center user-select-none">
         <span class="text-center">
-            Counter Title
+            @name
         </span>
     </div>
 
@@ -18,7 +19,11 @@
             <button type="button" class="btn btn-outline-warning btn-circle btn-lg shadow mr-3" data-toggle="tooltip" data-placement="top" title="Reset Count" @onclick="ResetCounter">
                 <i class="fas fa-undo"></i>
             </button>
-        
+
+            <button type="button" class="btn btn-outline-danger btn-circle btn-lg shadow mr-3" data-toggle="tooltip" data-placement="top" title="Delete" @onclick="DeleteCounter">
+                <i class="fa fa-trash-alt" aria-hidden="true"></i>
+            </button>
+
             <button type="button" class="btn btn-outline-primary btn-circle btn-lg shadow" data-toggle="tooltip" data-placement="top" title="Settings" @onclick="ShowSettings">
                 <i class="fa fa-cog" aria-hidden="true"></i>
             </button>
@@ -34,9 +39,10 @@
 
 <div class="mobileNavBarContainer fixed-bottom">
     <div class="mobileNavBar d-flex flex-row align-items-center justify-content-between w-100">
-        <div class="mobileNavbarBtn" @onclick="@(() => NavigationManager.NavigateTo("./home"))"><i class="fas fa-home"></i></div>
-        <div class="mobileNavbarBtn" @onclick="ResetCounter"><i class="fas fa-undo" ></i></div>
-        <div class="mobileNavbarBtn" @onclick="ShowSettings"><i class="fas fa-cog"></i></div>
+        <div class="mobileNavbarBtn" @onclick="@(() => NavigationManager.NavigateTo("./home"))" data-toggle="tooltip" data-placement="top" title="Home"><i class="fas fa-home"></i></div>
+        <div class="mobileNavbarBtn" @onclick="ResetCounter" data-toggle="tooltip" data-placement="top" title="Reset Count"><i class="fas fa-undo" ></i></div>
+        <div class="mobileNavbarBtn" @onclick="DeleteCounter" data-toggle="tooltip" data-placement="top" title="Delete"><i class="far fa-trash-alt"></i></div>
+        <div class="mobileNavbarBtn" @onclick="ShowSettings" data-toggle="tooltip" data-placement="top" title="Settings"><i class="fas fa-cog"></i></div>
     </div>
 
     @* <nav class="navbar navbar-dark fixed-bottom bg-dark">
@@ -46,23 +52,59 @@
 
 
 @code{
+    [Parameter]
+    public TallyCounterItem CounterItem { get; set; }
+
+    private string name = "Counter Default Title";
     private int Count = 0;
 
     private bool showSettings = false;
 
     protected override async Task OnInitializedAsync()
     {
-        await JSRuntime.InvokeVoidAsync("VibrateOnTouch");
+        await JSRuntime.InvokeVoidAsync("VibrateOnTouch", "medium");
     }
 
-    private void IncrementCount()
+    protected override void OnParametersSet()
+    {
+        if (CounterItem != null)
+        {
+            Count = CounterItem.CountValue;
+            name = CounterItem.Name;
+        }
+        
+    }
+
+    private async Task IncrementCount()
     {
         Count++;
+
+        if (CounterItem != null)
+        {
+            CounterItem.CountValue++;
+            await TallyCounterService.Upsert(CounterItem);
+        }
+
     }
 
-    private void ResetCounter()
+    private async Task ResetCounter()
     {
         Count = 0;
+
+        if (CounterItem != null)
+        {
+            CounterItem.CountValue = 0;
+            await TallyCounterService.Upsert(CounterItem);
+        }
+    }
+
+    private async Task DeleteCounter()
+    {
+        if (CounterItem != null)
+        {
+            await TallyCounterService.RemoveCounter(CounterItem.Id);
+            NavigationManager.NavigateTo("/home");
+        }
     }
 
     private void ShowSettings()
